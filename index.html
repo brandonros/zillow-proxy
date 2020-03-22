@@ -13,9 +13,9 @@
       <span id="address"></span>
       <br>
 
-      <input type="radio" name="selection" value="yes"> yes
-      <input type="radio" name="selection" value="maybe"> maybe
-      <input type="radio" name="selection" value="no"> no
+      <input type="radio" name="choice" value="yes"> yes
+      <input type="radio" name="choice" value="maybe"> maybe
+      <input type="radio" name="choice" value="no"> no
       <br>
 
       <label>notes</label><br>
@@ -32,20 +32,151 @@
     <script type="text/javascript">
       let index = 0
       const listings = [
-        {
-          address: '10166 NW 2nd St, Coral Springs, FL 33071',
-          listingUrl: 'https://www.zillow.com/homedetails/10166-NW-2nd-St-Coral-Springs-FL-33071/42866283_zpid/'
-        },
-        {
-          address: '10170 Ramblewood Dr, Coral Springs, FL 33071',
-          listingUrl: 'https://www.zillow.com/homedetails/10170-Ramblewood-Dr-Coral-Springs-FL-33071/42860693_zpid/'
-        }
+        { address: '10166 NW 2nd St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10166-NW-2nd-St-Coral-Springs-FL-33071/42866283_zpid/' },
+        { address: '10170 Ramblewood Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10170-Ramblewood-Dr-Coral-Springs-FL-33071/42860693_zpid/' },
+        { address: '1024 NW 83rd Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1024-NW-83rd-Dr-Coral-Springs-FL-33071/42859179_zpid/' },
+        { address: '10548 NW 36th St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/10548-NW-36th-St-Coral-Springs-FL-33065/120928136_zpid/' },
+        { address: '10676 NW 48th St, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/10676-NW-48th-St-Coral-Springs-FL-33076/42829409_zpid/' },
+        { address: '10680 NW 6th Ct, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10680-NW-6th-Ct-Coral-Springs-FL-33071/42865107_zpid/' },
+        { address: '10722 NW 17th Mnr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10722-NW-17th-Mnr-Coral-Springs-FL-33071/42861854_zpid/' },
+        { address: '10808 NW 46th Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/10808-NW-46th-Dr-Coral-Springs-FL-33076/42829479_zpid/' },
+        { address: '10861 NW 21st St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10861-NW-21st-St-Coral-Springs-FL-33071/42862368_zpid/' },
+        { address: '10933 NW 9th Mnr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10933-NW-9th-Mnr-Coral-Springs-FL-33071/42862209_zpid/' },
+        { address: '10965 NW 7th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/10965-NW-7th-St-Coral-Springs-FL-33071/42865751_zpid/' },
+        { address: '1097 NW 83rd Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1097-NW-83rd-Dr-Coral-Springs-FL-33071/42859359_zpid/' },
+        { address: '11018 Glenwood Dr, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11018-Glenwood-Dr-Coral-Springs-FL-33065/42839807_zpid/' },
+        { address: '11040 NW 44th St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11040-NW-44th-St-Coral-Springs-FL-33065/42839695_zpid/' },
+        { address: '11044 NW 17th Pl, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11044-NW-17th-Pl-Coral-Springs-FL-33071/42861746_zpid/' },
+        { address: '11069 Glenwood Dr, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11069-Glenwood-Dr-Coral-Springs-FL-33065/42839752_zpid/' },
+        { address: '11092 NW 21st St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11092-NW-21st-St-Coral-Springs-FL-33071/42862335_zpid/' },
+        { address: '11184 NW 46th Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/11184-NW-46th-Dr-Coral-Springs-FL-33076/42829582_zpid/' },
+        { address: '11220 NW 46th Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/11220-NW-46th-Dr-Coral-Springs-FL-33076/42829547_zpid/' },
+        { address: '11258 NW 43rd Ct, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11258-NW-43rd-Ct-Coral-Springs-FL-33065/42840534_zpid/' },
+        { address: '11303 NW 5th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11303-NW-5th-St-Coral-Springs-FL-33071/42865658_zpid/' },
+        { address: '11501 NW 39th Pl, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11501-NW-39th-Pl-Coral-Springs-FL-33065/42840403_zpid/' },
+        { address: '11632 NW 2nd Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11632-NW-2nd-Dr-Coral-Springs-FL-33071/42864559_zpid/' },
+        { address: '11661 NW 3rd Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11661-NW-3rd-Dr-Coral-Springs-FL-33071/42864546_zpid/' },
+        { address: '11680 NW 12th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/11680-NW-12th-St-Coral-Springs-FL-33071/42862680_zpid/' },
+        { address: '11819 NW 54th Pl, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/11819-NW-54th-Pl-Coral-Springs-FL-33076/42828307_zpid/' },
+        { address: '11946 NW 31st St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/11946-NW-31st-St-Coral-Springs-FL-33065/42841582_zpid/' },
+        { address: '12143 NW 46th St, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/12143-NW-46th-St-Coral-Springs-FL-33076/54593165_zpid/' },
+        { address: '12281 NW 57th St, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/12281-NW-57th-St-Coral-Springs-FL-33076/51611395_zpid/' },
+        { address: '12359 NW 25th St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/12359-NW-25th-St-Coral-Springs-FL-33065/42841952_zpid/' },
+        { address: '12703 NW 19th Mnr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/12703-NW-19th-Mnr-Coral-Springs-FL-33071/42863414_zpid/' },
+        { address: '12723 NW 21st Pl, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/12723-NW-21st-Pl-Coral-Springs-FL-33071/42863442_zpid/' },
+        { address: '1311 NW 112th Way, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1311-NW-112th-Way-Coral-Springs-FL-33071/42861972_zpid/' },
+        { address: '1612 NW 85th Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1612-NW-85th-Dr-Coral-Springs-FL-33071/42858681_zpid/' },
+        { address: '1794 NW 112th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1794-NW-112th-Ter-Coral-Springs-FL-33071/42861700_zpid/' },
+        { address: '1826 NW 81st Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1826-NW-81st-Ave-Coral-Springs-FL-33071/42858793_zpid/' },
+        { address: '1845 NW 93rd Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1845-NW-93rd-Ter-Coral-Springs-FL-33071/42858504_zpid/' },
+        { address: '1979 NW 112th Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1979-NW-112th-Ave-Coral-Springs-FL-33071/42861617_zpid/' },
+        { address: '1988 NW 110th Ln, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/1988-NW-110th-Ln-Coral-Springs-FL-33071/42861592_zpid/' },
+        { address: '2019 NW 86th Way, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/2019-NW-86th-Way-Coral-Springs-FL-33071/42858924_zpid/' },
+        { address: '2026 NW 86th Way, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/2026-NW-86th-Way-Coral-Springs-FL-33071/42858457_zpid/' },
+        { address: '2051 Maplewood Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/2051-Maplewood-Dr-Coral-Springs-FL-33071/42861008_zpid/' },
+        { address: '2075 Maplewood Dr, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/2075-Maplewood-Dr-Coral-Springs-FL-33071/42861015_zpid/' },
+        { address: '2162 NW 116th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/2162-NW-116th-Ter-Coral-Springs-FL-33071/42861345_zpid/' },
+        { address: '221 NW 118th Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/221-NW-118th-Ave-Coral-Springs-FL-33071/42864225_zpid/' },
+        { address: '2488 NW 91st Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/2488-NW-91st-Ave-Coral-Springs-FL-33065/42844172_zpid/' },
+        { address: '2715 NW 86th Way, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/2715-NW-86th-Way-Coral-Springs-FL-33065/42845743_zpid/' },
+        { address: '2731 NW 87th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/2731-NW-87th-Ave-Coral-Springs-FL-33065/42845738_zpid/' },
+        { address: '2896 NW 87th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/2896-NW-87th-Ave-Coral-Springs-FL-33065/42845708_zpid/' },
+        { address: '3203 NW 123rd Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3203-NW-123rd-Ave-Coral-Springs-FL-33065/42841543_zpid/' },
+        { address: '3206 NW 89th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3206-NW-89th-Ave-Coral-Springs-FL-33065/42836477_zpid/' },
+        { address: '3414 NW 112th Way, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3414-NW-112th-Way-Coral-Springs-FL-33065/42840708_zpid/' },
+        { address: '3502 NW 82nd Dr, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3502-NW-82nd-Dr-Coral-Springs-FL-33065/42836355_zpid/' },
+        { address: '3607 NW 85th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3607-NW-85th-Ave-Coral-Springs-FL-33065/42836328_zpid/' },
+        { address: '3661 NW 114th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3661-NW-114th-Ave-Coral-Springs-FL-33065/42840345_zpid/' },
+        { address: '3700 NW 114th Ln, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3700-NW-114th-Ln-Coral-Springs-FL-33065/42840361_zpid/' },
+        { address: '3841 NW 78th Way, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3841-NW-78th-Way-Coral-Springs-FL-33065/42834958_zpid/' },
+        { address: '3870 NW 78th Way, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3870-NW-78th-Way-Coral-Springs-FL-33065/42834998_zpid/' },
+        { address: '388 NW 107th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/388-NW-107th-Ter-Coral-Springs-FL-33071/42865216_zpid/' },
+        { address: '3941 NW 114th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3941-NW-114th-Ave-Coral-Springs-FL-33065/42840464_zpid/' },
+        { address: '3947 Jasmine Ln, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/3947-Jasmine-Ln-Coral-Springs-FL-33065/42836116_zpid/' },
+        { address: '412 NW 113th Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/412-NW-113th-Ave-Coral-Springs-FL-33071/42865633_zpid/' },
+        { address: '4140 NW 78th Ln, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/4140-NW-78th-Ln-Coral-Springs-FL-33065/42834813_zpid/' },
+        { address: '4161 NW 107th Ave, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/4161-NW-107th-Ave-Coral-Springs-FL-33065/42840182_zpid/' },
+        { address: '4209 NW 75th Way, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/4209-NW-75th-Way-Coral-Springs-FL-33065/42835206_zpid/' },
+        { address: '4255 NW 64th Ave, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/4255-NW-64th-Ave-Coral-Springs-FL-33067/42834376_zpid/' },
+        { address: '4451 NW 107th Ave, Coral Springs, FL', listingUrl: 'https://www.zillow.com/homedetails/4451-NW-107th-Ave-Coral-Springs-FL-33065/42840167_zpid/' },
+        { address: '4702 NW 115th Ter, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/4702-NW-115th-Ter-Coral-Springs-FL-33076/42829640_zpid/' },
+        { address: '4732 NW 115th Ter, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/4732-NW-115th-Ter-Coral-Springs-FL-33076/42829635_zpid/' },
+        { address: '4801 Chardonnay Dr, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/4801-Chardonnay-Dr-Coral-Springs-FL-33067/42832931_zpid/' },
+        { address: '4972 NW 105th Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/4972-NW-105th-Dr-Coral-Springs-FL-33076/42830433_zpid/' },
+        { address: '5053 NW 115th Ter, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5053-NW-115th-Ter-Coral-Springs-FL-33076/42829788_zpid/' },
+        { address: '5065 NW 96th Way, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5065-NW-96th-Way-Coral-Springs-FL-33076/42830072_zpid/' },
+        { address: '5172 NW 84th Rd, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/5172-NW-84th-Rd-Coral-Springs-FL-33067/42831588_zpid/' },
+        { address: '5228 NW 112th Ter, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5228-NW-112th-Ter-Coral-Springs-FL-33076/42829748_zpid/' },
+        { address: '5255 N Springs Way, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5255-N-Springs-Way-Coral-Springs-FL-33076/42829944_zpid/' },
+        { address: '5324 NW 122nd Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5324-NW-122nd-Dr-Coral-Springs-FL-33076/54593022_zpid/' },
+        { address: '5373 NW 126th Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5373-NW-126th-Dr-Coral-Springs-FL-33076/58440426_zpid/' },
+        { address: '5421 NW 122nd Dr, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5421-NW-122nd-Dr-Coral-Springs-FL-33076/51611472_zpid/' },
+        { address: '5450 NW 57th Ave, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/5450-NW-57th-Ave-Coral-Springs-FL-33067/42834046_zpid/' },
+        { address: '5537 NW 124th Ave, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5537-NW-124th-Ave-Coral-Springs-FL-33076/42828478_zpid/' },
+        { address: '5607 NW 109th Way, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5607-NW-109th-Way-Coral-Springs-FL-33076/42829200_zpid/' },
+        { address: '5636 NW 122nd Ave, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5636-NW-122nd-Ave-Coral-Springs-FL-33076/42828421_zpid/' },
+        { address: '5653 NW 117th Ave, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5653-NW-117th-Ave-Coral-Springs-FL-33076/42828612_zpid/' },
+        { address: '5736 NW 48th Dr, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/5736-NW-48th-Dr-Coral-Springs-FL-33067/42833878_zpid/' },
+        { address: '5804 NW 123rd Ave, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5804-NW-123rd-Ave-Coral-Springs-FL-33076/42827742_zpid/' },
+        { address: '5815 NW 120th Ter, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5815-NW-120th-Ter-Coral-Springs-FL-33076/58440123_zpid/' },
+        { address: '5861 NW 122nd Way, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5861-NW-122nd-Way-Coral-Springs-FL-33076/54592865_zpid/' },
+        { address: '5865 NW 124th Way, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5865-NW-124th-Way-Coral-Springs-FL-33076/58440162_zpid/' },
+        { address: '5949 NW 125th Ave, Coral Springs, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/5949-NW-125th-Ave-Coral-Springs-FL-33076/54592691_zpid/' },
+        { address: '6115 NW 41st Dr, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/6115-NW-41st-Dr-Coral-Springs-FL-33067/42834705_zpid/' },
+        { address: '6248 NW 43rd St, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/6248-NW-43rd-St-Coral-Springs-FL-33067/42834529_zpid/' },
+        { address: '633 NW 113th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/633-NW-113th-Ter-Coral-Springs-FL-33071/42865653_zpid/' },
+        { address: '6433 NW 110th Ave, Parkland, FL 33076', listingUrl: 'https://www.zillow.com/homedetails/6433-NW-110th-Ave-Parkland-FL-33076/42827383_zpid/' },
+        { address: '6581 NW 52nd St, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/6581-NW-52nd-St-Coral-Springs-FL-33067/42833210_zpid/' },
+        { address: '693 NW 101st Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/693-NW-101st-Ter-Coral-Springs-FL-33071/42865982_zpid/' },
+        { address: '7503 Live Oak Dr, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/7503-Live-Oak-Dr-Coral-Springs-FL-33065/42835891_zpid/' },
+        { address: '7506 NW 41st St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/7506-NW-41st-St-Coral-Springs-FL-33065/42835139_zpid/' },
+        { address: '7810 NW 39th Ct, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/7810-NW-39th-Ct-Coral-Springs-FL-33065/42834979_zpid/' },
+        { address: '7817 NW 39th Ct, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/7817-NW-39th-Ct-Coral-Springs-FL-33065/42834936_zpid/' },
+        { address: '8109 NW 38th St, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/8109-NW-38th-St-Coral-Springs-FL-33065/42836271_zpid/' },
+        { address: '8282 NW 3rd Pl, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8282-NW-3rd-Pl-Coral-Springs-FL-33071/42867388_zpid/' },
+        { address: '8311 NW 20th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8311-NW-20th-St-Coral-Springs-FL-33071/42858846_zpid/' },
+        { address: '8348 NW 7th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8348-NW-7th-St-Coral-Springs-FL-33071/42859384_zpid/' },
+        { address: '8354 NW 55th Ct, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/8354-NW-55th-Ct-Coral-Springs-FL-33067/42831997_zpid/' },
+        { address: '8412 NW 47th St, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/8412-NW-47th-St-Coral-Springs-FL-33067/42832574_zpid/' },
+        { address: '8446 NW 16th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8446-NW-16th-St-Coral-Springs-FL-33071/42858657_zpid/' },
+        { address: '8557 NW 1st St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8557-NW-1st-St-Coral-Springs-FL-33071/42867561_zpid/' },
+        { address: '8651 NW 7th Ln, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8651-NW-7th-Ln-Coral-Springs-FL-33071/42859236_zpid/' },
+        { address: '877 NW 87th Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/877-NW-87th-Ave-Coral-Springs-FL-33071/42859264_zpid/' },
+        { address: '8770 NW 18th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8770-NW-18th-St-Coral-Springs-FL-33071/42859907_zpid/' },
+        { address: '8877 NW 21st Ct, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/8877-NW-21st-Ct-Coral-Springs-FL-33071/42858295_zpid/' },
+        { address: '8960 NW 45th Ct, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/8960-NW-45th-Ct-Coral-Springs-FL-33065/42836764_zpid/' },
+        { address: '9066 NW 47th Ct, Coral Springs, FL 33067', listingUrl: 'https://www.zillow.com/homedetails/9066-NW-47th-Ct-Coral-Springs-FL-33067/42831754_zpid/' },
+        { address: '9099 NW 44th Ct, Coral Springs, FL 33065', listingUrl: 'https://www.zillow.com/homedetails/9099-NW-44th-Ct-Coral-Springs-FL-33065/42836728_zpid/' },
+        { address: '911 NW 109th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/911-NW-109th-Ter-Coral-Springs-FL-33071/42865784_zpid/' },
+        { address: '944 NW 126th Ter, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/944-NW-126th-Ter-Coral-Springs-FL-33071/58440903_zpid/' },
+        { address: '9764 NW 19th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9764-NW-19th-St-Coral-Springs-FL-33071/42860435_zpid/' },
+        { address: '9773 NW 4th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9773-NW-4th-St-Coral-Springs-FL-33071/42866103_zpid/' },
+        { address: '9799 NW 5th Ct, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9799-NW-5th-Ct-Coral-Springs-FL-33071/42866059_zpid/' },
+        { address: '987 NW 126th Ave, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/987-NW-126th-Ave-Coral-Springs-FL-33071/58440834_zpid/' },
+        { address: '9875 NW 20th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9875-NW-20th-St-Coral-Springs-FL-33071/42860402_zpid/' },
+        { address: '9886 NW 16th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9886-NW-16th-St-Coral-Springs-FL-33071/42860820_zpid/' },
+        { address: '9982 NW 19th St, Coral Springs, FL 33071', listingUrl: 'https://www.zillow.com/homedetails/9982-NW-19th-St-Coral-Springs-FL-33071/42860555_zpid/' },
       ]
 
-      const drawListing = () => {
+      const drawListing = async () => {
         document.querySelector('#counter').innerHTML = `${index + 1} / ${listings.length}`
-        document.querySelector('#frame').src = listings[index].listingUrl.replace('https://www.zillow.com/', 'http://localhost:8080/')
+        document.querySelector('#frame').src = listings[index].listingUrl.replace('https://www.zillow.com/', `http://${window.location.hostname}:9091/`)
         document.querySelector('#address').innerText = listings[index].address
+
+        const response = await fetch(`http://${window.location.hostname}:9090/listing?address=${encodeURIComponent(listings[index].address)}`)
+        if (response.status !== 200) {
+          alert(`Invalid response status: ${response.status}`)
+          return
+        }
+        const responseBody = await response.json()
+        const { notes, choice } = responseBody
+        document.querySelector('#notes').value = notes || ''
+        if (document.querySelector('[name="choice"]:checked')) {
+          document.querySelector('[name="choice"]:checked').checked = false
+        }
+        if (choice) {
+          document.querySelector(`[name="choice"][value="${choice}"]`).checked = true
+        }
       }
 
       document.addEventListener('DOMContentLoaded', () => {
@@ -69,7 +200,7 @@
       })
 
       document.querySelector('#save').addEventListener('click', async () => {
-        const response = await fetch('http://localhost:8081/listing', {
+        const response = await fetch(`http://${window.location.hostname}:9090/listing`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -77,7 +208,7 @@
           body: JSON.stringify({
             address: listings[index].address,
             notes: document.querySelector('#notes').value,
-            choice: document.querySelector('[name="selection"]:checked').value
+            choice: document.querySelector('[name="choice"]:checked').value
           })
         })
         if (response.status !== 204) {
