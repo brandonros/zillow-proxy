@@ -1,0 +1,24 @@
+{
+  "name": "zillow-proxy",
+  "version": "1.0.0",
+  "description": "Zillow listings as a slideshow with note-taking + voting capabilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonros/zillow-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandonros/zillow-proxy/issues"
+  },
+  "homepage": "https://github.com/brandonros/zillow-proxy#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0"
+  }
+}

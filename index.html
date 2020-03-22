@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <div style="text-align: center">
+      <button id="previous"><</button>
+      <span id="counter"></span>
+      <button id="next">></button>
+      <br>
+
+      <span id="address"></span>
+      <br>
+
+      <input type="radio" name="selection" value="yes"> yes
+      <input type="radio" name="selection" value="maybe"> maybe
+      <input type="radio" name="selection" value="no"> no
+      <br>
+
+      <label>notes</label><br>
+      <textarea cols="80" rows="10" id="notes"></textarea>
+      <br>
+
+      <button id="save">save</button>
+    </div>
+
+    <br>
+
+    <iframe id="frame" width="100%" style="height: 1000px"></iframe>
+
+    <script type="text/javascript">
+      let index = 0
+      const listings = [
+        {
+          address: '10166 NW 2nd St, Coral Springs, FL 33071',
+          listingUrl: 'https://www.zillow.com/homedetails/10166-NW-2nd-St-Coral-Springs-FL-33071/42866283_zpid/'
+        },
+        {
+          address: '10170 Ramblewood Dr, Coral Springs, FL 33071',
+          listingUrl: 'https://www.zillow.com/homedetails/10170-Ramblewood-Dr-Coral-Springs-FL-33071/42860693_zpid/'
+        }
+      ]
+
+      const drawListing = () => {
+        document.querySelector('#counter').innerHTML = `${index + 1} / ${listings.length}`
+        document.querySelector('#frame').src = listings[index].listingUrl.replace('https://www.zillow.com/', 'http://localhost:8080/')
+        document.querySelector('#address').innerText = listings[index].address
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        drawListing(index)
+      })
+
+      document.querySelector('#previous').addEventListener('click', () => {
+        if (index === 0) {
+          return
+        }
+        index -= 1
+        drawListing(index)
+      })
+
+      document.querySelector('#next').addEventListener('click', () => {
+        if (index === listings.length - 1) {
+          return
+        }
+        index += 1
+        drawListing()
+      })
+
+      document.querySelector('#save').addEventListener('click', async () => {
+        const response = await fetch('http://localhost:8081/listing', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            address: listings[index].address,
+            notes: document.querySelector('#notes').value,
+            choice: document.querySelector('[name="selection"]:checked').value
+          })
+        })
+        if (response.status !== 204) {
+          alert(`Invalid response status: ${response.status}`)
+        }
+      })
+    </script>
+  </body>
+</html>
